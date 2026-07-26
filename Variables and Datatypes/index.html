@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: black; color: white;">
+    <h1>Variables and Datatypes in JS</h1>
+    <h2 style="text-decoration: underline;">Variables</h2>
+
+
+    <p> #Variable naming Convention : can start with number, _ , $, etc. There should be no space in between. Variable
+        should be in camelCase Ordering EX. ageOfStudent, marksOfTopper. Variable name should be meaningful.Cannot Use
+        Reserved Keywors.
+    <pre>
+###----  Var  ----###
+It is either globally scoped or functional scoped. when we use it using var inside a function , we cannot access the variable outside the function.
+Also var allows variable to reassigned and redefine a variable within same scope.This behavior may lead to bugs and unexpected result if we dont use it carefully. If we write variable outside function using var we can use it anywhere i.e it is globally scope(in file we can use it anywhere). Using var redeclaration is not recommended, because it can cause debugging issues.
+EX. 1) variable using var inside function - 
+function solve() {
+    var a = 5;
+    console.log(a);
+}
+solve()
+console.log(a) // give error as a is not define
+
+EX. 2) variable using var outside function-
+var a = 5;
+if (true) {
+    console.log(a)
+}
+a = 6; // can be reassigned
+var a  = 8 //can be redefined but not recommended
+console.log(a)
+
+
+###---- Let ----###
+Blocked Scope - if created in block then only accessed in block. Redeclaration is not allowed and redefined is also noy allowed but can be reassigned.
+ex 1) Creates in blocks-
+{
+    let a = 10
+}
+console.log(a)
+
+ex 2)-
+{
+    let b = 5
+    console.log(b)
+}
+
+
+###---- Const ----###
+once we assign it , can not be changed later .
+    </pre>
+    </p>
+
+    <h2 style="text-decoration: underline;"">Data Types in Javascript</h2>
+
+    <p><pre>
+Two Types - 1) Primitive and 2)Non-Primitive Datatypes.
+
+#---- Primitive Data Type ----#
+In Primitve Data types we have  
+// 1) Number - (int and float)
+// 2) String - characters ('', "", ``(backticks))
+// 3) Boolean- (True or False)
+// 4) Undefine - (no value is provided to variable. Ex let age;)
+// 5) null - (Does not have anything it is null or u can say that we have inserted null value in variable )
+// 6) BigInt 
+// 7) Symbol - (A Symbol represents a unique identifier.Every Symbol value is unique, even if they have the same description. A Symbol is a hidden identifier that no code can accidentally access.)
+
+// # How to check type of data
+marks = false;
+console.log(typeof (marks));
+    </pre></p>
+
+    <script src="Variables.js"></script>
+    <script src="Datatype.js"></script>
+</body>
+
+</html>

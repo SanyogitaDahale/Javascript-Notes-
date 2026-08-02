@@ -1,0 +1,196 @@
+// ## ---- Arrays in Javascript ---- ##
+  
+// it is a Non-primitive/Reference Type data type in Javascript.
+// In reference type we have 1) Arrays 2) Objects 3) Functions
+
+// ## IMP POINTS ##
+// #ALl Primitive Types are - Stack memory
+// #All Reference Type are  - Heap memory
+// #To access heap memory we need access pointer/ reference which is created in stack.
+// # Questions - 1) primive VS Non primitve Data types in JS
+// # Primitive                  Non-Primitive
+// 1.Stores actual value	     Stores reference
+// 2.Immutable	                 Mutable
+// 3.Compared by value	         Compared by reference
+// 4.Usually stored in          Stored in heap memory
+//   stack memory
+
+
+// # Questions - 2) Stack VS Heap Memory in JS
+// Stack Memory → Stores Primitive values,Fast access
+// Stores the actual value, Copying creates a new independent copy.
+// Heap Memory → Stores Objects (Arrays, Objects, Functions), Stores data dynamically, Variables store a reference (address) to the object, Copying copies the reference, not the actual object.
+
+// ## Object - Collection of key-value pairs
+// Syntax :
+// let obj = {
+//     name: "sanyo",
+//     age: 23,
+//     "Full Name ": "SD",
+//     greet: function () {
+//         console.log("Hello guys")
+//     }
+// }
+// console.log(obj)
+// obj.greet()
+// console.log(typeof(obj))
+
+// #Shallow copy is  -
+// in this there will be no new data created, but it will only show obj data with new name only (it wont store the data in original object only it will point to it)
+
+// #How can we peform Shallow and Deep Copy in JS??
+// #A shallow copy copies only the first level of an object. If the object contains another object or array (nested object), the nested object is shared between the original and the copy.
+
+// Shallow copy of obj
+// let obj2 = obj
+// console.log(obj2)
+
+// #A deep copy copies everything, including nested objects and arrays. The copied object is completely independent.
+// let person1 = {
+//     name: "Sanyogita",
+//     address: {
+//         city: "Pune"
+//     }
+// };
+// let person2 = structuredClone(person1);
+// person2.address.city = "Mumbai";
+// console.log(person1.address.city);
+// console.log(person2.address.city);
+
+
+// ## Arrays  - Collection of items
+// Creating an Array
+// Ex. 1)
+// let arr1 = [1, 2, 3, 4, 5]
+// let arr2 = [true, 'Hello', 1, 1.5]
+// console.log(arr1, arr2)
+// console.log(typeof (arr1))// Output - Object
+// console.log(typeof (arr2))// Output - Object
+ 
+// Ex. 2) - Using Constructor
+// let arr3 = new Array('love', 1, true)
+// console.log(typeof(arr3))// Output - Object
+// console.log(arr3)
+
+// #Access element by indexing
+// console.log(arr3[0])
+
+// ##** Built-in methods in Arrays given following **##
+
+// #push - insert at end
+// Ex.
+// arr3.push('Last')
+// arr3.push(0)
+// console.log(arr3)
+
+// #pop - remove last item
+// Ex.
+// arr3.pop()
+// console.log(arr3)
+
+// #shift - Remove first element
+// arr3.shift()
+// // unshift - Add element in left most side (i.e in start)
+// arr3.unshift("Hello")
+// console.log(arr3)
+
+// #slice - new part from array (Shallow Copy (Not Deep Copy)). It will exclude the last index u gave.
+// arr3.push(4)
+// arr3.push(2)
+// arr3.push(3)
+// console.log(arr3.slice(1,3))
+// console.log(arr3) // Output - ['Hello', 1, true, 'Last', 4, 2, 3]
+
+// #splice - Can change content in Array, By using it we can inset, replace, remove on any place in array.
+// arr3.splice(1, 3, "Hi") // This means on index 1, with (including index 1) 3 values replace it with Hi.
+// console.log(arr3) // Output -  ['Hello', 'Hi', 4, 2, 3]
+// arr3.splice(1, 0, "H") //Do not remove anthing cause 0 is there.
+// console.log(arr3)
+
+// #map - Suppose we have existing values and on these value if we want to run some functions we use map
+// Ex. 1)
+// let arr = [10, 20, 30]
+// let nums = arr.map((num) => {
+//     return num * num
+// })
+// console.log(nums)
+
+// Ex. 2) - Suppose we have to print using map
+// let pr = arr.map((num) => {
+//     console.log(num)
+// })
+// console.log(pr)
+
+// Ex. 3) - With index
+// let pr = arr.map((num, index) => {
+//     console.log(num, index)
+// })
+// console.log(pr)
+
+
+// #filter - have array and filter elements in array ( function will tell that element include or exclude from array)
+// Ex. 1) - Even Number
+// let arr = [1, 2, 3, 4, 5, 6]
+// let arr1 = arr.filter((num) => {
+//     // if (num % 2 === 0) {
+//     //     console.log(num)
+//     // }
+//     return num % 2 === 0;
+// })
+// console.log(arr1)
+
+// Ex. 2)
+// let arr = ["a", "b", 1, 2, 3, "c", "d"]
+// let arrs = arr.filter((value) => {
+//     return typeof(value) === "number"
+// })
+// console.log(arrs)
+
+
+// #reduce - Used when, For complex mathmetial operation perform/ Produce single value, etc.
+// Accumulator and Current
+// Accumulator - if we intialize accumulative manually then good, if we dont then considers 0th value in aaray.
+// Ex. 1)
+// let arr = [10, 20, 30, 40]
+// let sum = arr.reduce((acc, curr) => {
+//     return acc + curr
+// }, 0) // 0 is value of accumulator
+// console.log(sum)
+
+
+// #sort
+// let arr = [90, 80, 10, 40]
+// console.log(arr.sort()) //Ascending
+// console.log(arr.sort().reverse()) //Decending
+// arr.sort((a, b) => b - a); // Decending
+// console.log(arr);
+
+
+// #indexof
+// let arr = [90, 80, 10, 40]
+// console.log(arr.indexOf(90))
+// console.log(arr.indexOf(40))
+
+
+// #find - Used to find elements with condition (will give u output of the first element which it finds in array)
+// let arr = [90, 80, 10, 40]
+// let result = arr.find(num => num > 25);
+// let index = arr.findIndex(num => num > 25);
+// console.log(result)
+// console.log(index)
+
+
+// ## - Arrays in Function - ##
+// Sum of Array
+// let arr = [10, 20, 30, 40]
+// function getSum(arr) {
+//     let len = arr.length
+//     let sum = 0
+//     for (let index = 0; index < len; index++){
+//         sum = sum + arr[index]
+//     }
+//     return sum
+// }
+
+// let total = getSum(arr)
+// console.log(total)

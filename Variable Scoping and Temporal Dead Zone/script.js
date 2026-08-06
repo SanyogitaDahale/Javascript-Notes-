@@ -1,2 +1,49 @@
 // ## ----- Variable Scoping and Temporal Dead Zone ----- ##
 
+// 1) Global Scope
+// var age = 20; // Global Scope - cause in whole file we can use this variale even if we declare it using let and const.
+// This variable created in whole file can be further used in function, object in this file.
+// But we avoid it mostly.
+
+// 2) Function Scope
+// // Variable defined in function and it can be used in function only, it can not be used outside function.
+// function FullName() {
+//     var fullname = 'Sanyogita';
+//     var a = 5
+//     return fullname
+// }
+// console.log(FullName()) // Output - Sanyogita
+// console.log(fullname) // Reference error - a and b is not defined
+// console.log(a + 5) // Function Scope
+
+// 3) Block Scope
+// Defined inside curly brackets ' { } '.
+// CANNOT done using var.
+// Only CAN done it using let and const.
+// {
+//     var age = 20;
+//     let a = 1
+//     const b = 2
+//     console.log(a + b)
+//     console.log(age )
+// }
+
+// console.log('Hello', age)
+// console.log(a*b) // Reference error - a and b is not defined
+
+
+// ##---- Temporal Dead Zone ----##
+
+// It is a period between entering a scope and declaring a variable with let or const. During this period, the variable exists but cannot be accessed. Even if we try JS will throws a ReferenceError.
+// Const and var both has Temporal Dead Zone
+// Var does not have Temporal Dead Zone
+
+// Ex. 1). Example with Const. 
+// Here line 43 to 45 is Temporal Dead Zone.
+// console.log(marks); // It will give ReferenceError
+// console.log("Hello")
+// console.log("How are you ?")
+// const marks = 100;
+// console.log(marks); // will give output
+
+ 

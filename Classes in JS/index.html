@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes in JS</title>
+</head>
+<body>
+    <h1> Classes in Javascript </h1>
+    <p> <pre>
+## --- Classes in Javascript --- ##
+# Class is a blueprint for creating object.
+It provides cleaner, organized way to create a class.
+
+# Object in js is a collection of key-value pairs used to store related data and functionality.
+
+EX. Class Human and Object after it
+class Human{
+
+    //Properties
+    age = 13;
+    ht = 180; // Public
+    #wt = 10; //Private
+
+    //Behavior - i.e Function in class
+    walking() {
+        console.log("Walking is good", this.#wt) // this is representing current object
+    }
+
+    #Running() {
+        console.log("Running is better")
+    }
+
+    //Getters
+    get fetchweight() {
+        return this.#wt;
+    }
+
+    //Setter
+    set modifyWeight(value) {
+        this.#wt = value;
+    }
+}
+
+// Object
+let obj = new Human();
+
+// Accessing variable and function
+console.log(obj.age);
+console.log(obj.ht);
+// console.log(obj.this.#wt); // Output - Will give syntax error cause we cant access private variable outside of a class.
+console.log(obj.fetchweight);
+obj.walking()
+obj.Running()
+
+
+# IMP #
+IF we want to access private variable outside of the class than we need to create getters and setters.
+getter is a function which will fetch value.
+setter will set value, modify or update it.
+Getters and Setters are Shown in Above Example.
+Uses - so that we can add symantic clearity, cause we will be able to do encapsulation, for better provide of data production.
+
+# Constructor
+class Human{
+    age;
+    name;
+
+    Intro() {
+        console.log( 'Hello ! How are you ?', this.name)
+    }
+
+    constructor(newAge, newName) {
+        this.age = newAge;
+        this.name = newName;
+    }
+}
+
+let insaan = new Human(24, 'Sanyogita')
+console.log(insaan.name)
+insaan.Intro()
+
+
+# Default Parameters
+It allows us to use functions with default values.
+Suppose we did not pass any value of parameter or we forgot then if we want to set default value then that default value will be used.
+
+EX. 1)
+function sayName(myname = 'Parth') {
+    console.log(myname)
+}
+sayName(); // Undefine before writing default value but now i will give output - Parth
+sayName('Hello'); // Hello
+
+Ex. 2) Suppose one parameter is dependant on other parameter.
+function FullName(fName = "sanyogita", lName = fName.toUpperCase()) {
+    console.log('Hello', fName, lName)
+}
+FullName()
+FullName('d')
+FullName('s', 'd')
+
+Ex. 3) Suppose Default Parameter is an Object. \
+Just like this we can also add arrays, function.
+function solve(val = { age: 15, name:'sanyogita'}){
+    console.log("Hello jii! ", val)
+}
+solve()
+solve("good?")
+
+Ex. 4) Using Null and Undefine
+function solve(value = 'Sanyo'){
+    console.log("Hello jii! ", value)
+}
+solve()
+solve(null) //- It will print null
+solve(undefined) //- It will print default value given
+
+Ex. 5) Using Function in default parameter 
+function getAge() {
+    return 25
+}
+
+function utility(name = "Sanyo", age = getAge()) {
+    console.log(name, " ", age)
+}
+
+utility("ABC", 20)
+utility() // Sanyo 25
+
+
+    
+    </pre> </p>
+
+    <script src="index.js"></script>
+</body>
+</html>

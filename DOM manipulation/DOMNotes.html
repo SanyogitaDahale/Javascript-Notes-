@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes of DOM Manipulation</title>
+</head>
+<body>
+    <h1>Javascript DOM Manipulation</h1>
+    <br>
+    <p>
+        <pre>
+##--- Javascript DOM Manipulation ---##
+
+# Window Object - global object.
+The window object represents the browser window/tab in which your webpage is running.
+In this window object there is DOM, BOM, JS core features, etc.
+Think of it as the top-level object provided by the browser.
+Browser Tab
+   │
+   └── window
+        ├── document
+        ├── location
+        ├── history
+        ├── navigator
+        ├── localStorage
+        ├── alert()
+        ├── setTimeout()
+
+lets say we have global variable will be Property of Window Object.
+Global method  will be Behaviour of Window Object.
+
+try these in console -
+window.open()
+window.close()
+
+Window Object is Top in all element hierarchy.
+now, console.log(1) is also lies under Window Object.
+
+<hr>
+
+#Document - html code is converted into JS Object and that JS object is called document.
+
+<hr>
+#DOM - Document Object Model
+DOM allows javascript to access, change, add or remove HTML elements and Css styles on a webpage.
+DOM is basically tree like structure.
+Ex.
+HTML Code --> DOM Tree (converts html into objects arranged like tree, JS can access the dom)  --> Javascript Manipulates the tree--> Webpage changes.
+
+<hr>
+# tags - Ex. <html> </html>
+# tokeniser - converts html tags into tokens.
+# These nodes get converted into nodes (nodes in tree). Alot of nodes creates DOM.
+
+#BOM - Browser Object Model
+Interaction with Browser Except html content i.e BOM.
+
+<hr>
+## IMP ##
+DOM --> Work with the webpages.
+BOM --> Work with the browser.
+
+<hr><hr>
+## ---  Changing HTML ---- ##
+
+## Access or Fetch tags/element in html - Can do it throught ID, Class, TagName, in response(single o/p, multiple o/p).
+
+In console of index.html
+1) element by ID
+document.getElementById("fpara");
+
+2) element by class
+document.getElementsByClassName("fheading");
+
+3) element by Tage name
+document.getElementsByTagName('p')
+
+Query selector - for ID, Class and Tag Name.
+document.querySelector('.fheading')
+document.querySelector('#fpara')
+document.querySelector('p')
+document.querySelectorAll('.para') // This is to select all
+
+<hr>
+## Updating existing element - innerHTML, outerHTML, text-content, innerText.
+
+1) innerHTMl - get/set to change html inside the element.
+
+IMP - How to get ???
+<div id="box">
+   <h2>Hello</h2>
+</div> 
+
+let box = document.getElementById("box");
+box.innerHTML = "<h2>Welcome!</h2>";
+
+Output :
+<div id="box">
+   <h2>Welcome!</h2>
+</div>
+
+IMP - How to set ???
+Suppose change button data/name
+button.innerHTML = '<p> Hello ji</p>'
+
+innerHTML = Change content inside the element + HTML tags are interpreted.
+
+2) outerHTML - Change/replace the complete element itself.
+
+
+3) text-content -
+Ex. Run this in Console log ::
+let element = document.querySelector('#fdiv')
+element
+element.textContent //- will give u same output which is in HTML FIlE
+4) innerText
+element.innerText //- will give same output which is shown in UI HTML PAGE
+
+<hr>
+
+## Add Elements in HTMl -
+1) appendChild method to add element, to add we have to first create child for this we have 'createElement'. Whenever we use append child, child always added at the end of parent tag.
+
+Ex. run these on console
+let fhead = document.createElement('h1')
+fhead
+fhead.textContent = "Hello JI"
+let bodyTag = document.querySelector('body')
+bodyTag.appendChild(fhead)
+bodyTag
+
+2) insertAdjacentElement()
+we need to know two things in it that what position we want to insert and what html content we want to insert.
+position - before begin, after begin, before end, after end.
+Ex. Run these in Console
+let mydiv = document.querySelector('mydiv')
+mydiv
+let newElement = document.createElement('span')
+newElement
+newElement.textContent = "This is me Sanyogita"
+newElement
+
+mydiv.insertAdjacentElement('beforebegin', newElement)
+mydiv.insertAdjacentElement('afterbegin', newElement)
+mydiv.insertAdjacentElement('beforeend', newElement)
+mydiv.insertAdjacentElement('afterend', newElement)
+
+## Removal - remove child() - opposite of append child.
+here parent and child both are important
+
+let mydiv = document.querySelector('mydiv')
+let parent = document.querySelector('#mydiv')
+let child = document.querySelector('#fpara')
+parent.removeChild(child)
+
+<hr>
+### - Now to Change CSS - ###
+.Changing CSS - external CSS, inline CSS(more priority), Internal CSS.
+Properties :
+1) Style, can do get and set, Cannot set Multiple inline styles using style.
+EX.
+let paraElement = document.getElementById('spara')
+paraElement
+console.log(paraElement.style)
+paraElement.style.background = 'blue'
+
+2) .CSSText, get and set inline styles, Most importantly multiple inline styles can be set using CSSText.
+let secondElement = document.getElementById('sdiv')
+secondElement
+secondElement.cssText
+secondElement.style.cssText // get
+secondElement.style.cssText = "background-color: black; color:White"
+
+3) .SetAttribute(), The JavaScript setAttribute() method updates the value of an existing attribute on a specified HTML element or adds a new one if it does not exist.
+
+EX. Changing image source
+const image = document.querySelector('img');
+image.setAttribute('src', 'logo.png');
+
+Ex. Disabling a form button
+const button = document.querySelector('#submit-btn');
+button.setAttribute('disabled', '');
+
+Ex. Adding a custom data attribute
+const userCard = document.querySelector('.user-card');
+userCard.setAttribute('data-user-id', '12345');
+
+<hr>
+
+## CSS .className
+# How to get ?
+let para = $0;
+para
+para.className
+
+# How to set ?
+fpara.className = "goku gojo"
+
+<hr>
+## .classList - can get (in arrays/ list format)
+add, remove, toggle, contains - we can do these operations.
+
+let fpara = document.querySelector('#apara)
+fpara
+fpara.classList
+fpara.classList.add('thirdClass')
+fpara.classList
+fpara.classList.remove('firstClass)
+fpara.classList
+fpara.classList.toggle('secondClass')
+fpara.classList
+
+
+        </pre>
+    </p>
+</body>
+</html>

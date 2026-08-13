@@ -1,0 +1,67 @@
+// ## Object Cloning ##
+
+// Dynamic Nature of object - Because we can change properties on runtime
+// Ex.
+// let obj = {
+//     age: 24,
+//     ht: 188,
+//     wt: 70,
+// }
+// console.log(obj)
+// obj.color = 'fair';
+// console.log(obj)
+// let b = obj; //This is not Object Cloning
+
+
+// #Object Cloning
+// 1) Using Spread Operator
+// let obj = {
+//     age: 23,
+//     ht: 188,
+//     wt: 70,
+// }
+// let clone = { ...obj }
+// obj.age = 24
+// console.log(clone)
+// console.log(obj)
+
+// 2) Assign Method
+// let obj = {
+//     age: 23,
+//     ht: 188,
+//     wt: 70,
+// }
+// let clone = Object.assign({}, obj)
+// obj.age = 24
+// console.log(clone)
+// console.log(obj)
+
+// 3) Iteration Method (Not recommended)
+// USing for loop
+// let obj = {
+//     age: 23,
+//     ht: 188,
+//     wt: 70,
+// }
+
+// let dest = {};
+
+// for (let key in obj) {
+//     let newKey = key;
+//     let newValue = obj[key];
+//     //insert newKey and value in dest and create a clone
+//     dest[newKey] = newValue
+// }
+
+// obj.age = 24
+// console.log(dest)
+// console.log(obj)
+
+
+// ## Garbage Collector ##
+// Garbage collector in JS is a feature/mechanism that automactically removes data from memory that is no longer needed.
+// It helps prevent your program from using unnecessary memory.
+// Garbage Collector indentifies that object as unsuded and eventually removes it from memory.
+// We consider that the heap memory is storage area where JS keeps objects and other dynamically allocated data.
+// Suppose, Heap Memory is room, object is things inside room and garbage collector is cleaner.
+// We do not have any control on Garbage Collector.

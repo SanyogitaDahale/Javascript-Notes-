@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Events</title>
+</head>
+
+<body>
+    <h1> Browser Events in JS</h1>
+
+    <div id="fpara">
+        <p>Hello !! Sab Thik ?</p>
+        <a id='fanchor' href="https://www.google.com">Click On Link</a>
+    </div>
+
+
+    <p>
+    <pre>
+## --- Browser Events in jS ---##
+
+## Event #
+event is like an announcements
+click, double click, key press, scroll mouse, etc are event, works like event.
+Suppose we want to check events in console then we check using monitorEvents (for monitoring events).
+Ex. monitorEvents(document);
+If we dont want to monitor events then we use unmonitorEvents.
+Ex. unmonitorEvents(document);
+
+## Event-target #
+Event target is type of entity where your event is recieved. Possibility is that we might have applied event listener OR event handler for the event.
+Suppose we have a button and we clicked it then the button is Event Target and click is event.
+We can say that most of the times html elements are event-target.
+After clicking the action performed is stored at a location and that loction is <b>Event listener.</b>
+Suppose Ex.
+Event -> click
+Play button -> <b>event-target</b>
+Video Run/ Play -> Action/Behaviour listed inside <b>Event-Listener - (Action is written in event listener.)</b>
+suppose we have lot of elements we can add action by using addEventListener() and if we want to remove we use removeEventListener.
+
+#Syntax :
+<event-target> .addEventListener( <event-Type>, <function/Action> )
+
+#Example :
+function changeText() {
+    let fpara = document.getElementById('fpara');
+    fpara.textContent = 'Hello, Sanyogita !'
+}
+let fpara = document.getElementById('fpara');
+fpara.addEventListener('click', changeText)
+
+fpara.removeEventListener('click', changeText)
+// Here we should use same object.
+
+
+## Phases of Event
+Phase 1 : Capturing Phase
+The event travels from the top (document) down to the target element.
+In this Phase the event goes throught the HTML, DOM and searches for the target element.
+Ex .
+Document
+   ↓
+HTML
+   ↓
+Body
+   ↓
+Parent
+   ↓
+Child(target)
+
+Phase 2 : Target Phase
+The event reaches the actual element that triggered the event.
+Ex:
+<button id="btn">Click Me</button>
+If you click the button, the button is the target.
+
+Phase 3 : Bubbling Phase
+After reaching the target, the event travels back upward through its parents.
+Ex.
+Child (target)
+   ↑
+Parent
+   ↑
+Body
+   ↑
+HTML
+   ↑
+Document
+
+# IMP -  By default addEventListener() is applied in Bubbling Phase.
+
+
+## Event Object
+Whenever a event is triggered it is directed to addEventListener(as a argument or parameter) and we can utilize it to see what type of data is in it.
+Whenever event is triggered, object of an event is automatically passed to event listener.
+
+## Default Action
+As we know anchor tag perform default action that it directs us to another website or page.
+We can change default behavior of anchor tag
+
+Example.
+let anElement = document.getElementById('fanchor');
+
+anElement.addEventListener('click', function (event) {
+    event.preventDefault(); // IMP for removing default function before changing it.
+    anElement.textContent = 'Done'
+});
+
+
+## Avoiding Too Many Listeners
+#Example - AvoidListeners.html File has Html Code.
+Suppose i have div and four paragraph (for every para we add listener)
+
+# Not a good practice. THis is not Good Way to do it.
+let paras = document.querySelectorAll('p');
+for (let i = 0; i < paras.length; i++){
+    let para = paras[i];
+    para.addEventListener('click', function () {
+        alert("Clicked on para : " + (i+1))
+    })
+}
+
+#Better Approach
+create 1 listener and all paragraph are maped to it.
+let paras = document.querySelectorAll('p');
+function alertpara(event) {
+    alert("Clicked on para : " + event.target.textContent);
+}
+
+for (let i = 0; i < paras.length; i++){
+    let para = paras[i];
+    para.addEventListener('click', alertpara)
+}
+
+#Applying Event Listener to Div
+Example 1)
+function alertpara(event) {
+    alert("Clicked on para : " + event.target.textContent);
+}
+
+let mydiv = document.getElementById('wrapper')
+document.addEventListener('click', alertpara)
+// click on both para content and span content
+
+Example 2)
+function alertpara(event) {
+    // write tage name in capital
+    if (event.target.nodeName === 'SPAN') {
+        alert("Clicked on para : " + event.target.textContent);
+    }
+}
+
+let mydiv = document.getElementById('wrapper')
+document.addEventListener('click', alertpara)
+
+
+## DOMContentLoaded Event
+DOMContentLoaded is an event that runs when the HTML document has been completely loaded and parsed into the DOM.
+It is commonly used when you want to run JavaScript only after the HTML elements are available.
+Ex.
+HTML starts loading
+       ↓
+HTML is parsed
+       ↓
+DOM is created
+       ↓
+DOMContentLoaded fires
+       ↓
+Your JavaScript runs
+
+DOMContentLoaded does not mean everything on the page is loaded. It means the HTML/DOM is ready.
+DOMContentLoaded → DOM/HTML is ready.
+load → Entire page and its resources are loaded.
+        </pre>
+    </p>
+
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+// ###--- Event Loop in JS ---###
+// Js is a single threaded langaugae and even if it is then how Asynchronus Code is handled, how cuncurrency is maintained and how responsive things can be handled is done using Event Loop Concept which is Important to know.
+
+// ##What is Synchronus Code ??
+// ex.
+// console.log("Hi")
+// console.log("Sanyogita")
+// console.log("Dahale")
+// THis  is a synchronus code cause its a peace of code that executes at the same time.
+
+// ##What is Asynchronus Code ??
+// asynchronus code is a peace of code that does not executes at the same time. (does not have gerentee that the code will execute at the same time)
+// Network request, Event listeners, DB Connection, lies in Asynchronus code.
+// Make sure to run Network request, Event listeners, DB Connection, etc asynchronus code should be run differently from main thread, Because we want to make sure that main thread is not blocked.
+
+// ## What is Blocking ??
+// Ex.
+// console.log('HEllo')
+// function sayMyName() {
+//     console.log("Sanyogita");
+// }
+
+// setTimeout(sayMyName, 5000); //5000 ms, i.e 5 sec
+// //setTimeout() itself does not block the main thread. It schedules the callback to run later, which is one of the key ideas behind the JavaScript Event Loop.
+// console.log("Bye")
+
+// Output : HELLo
+//          Bye
+//          Sanyogita (will appear after 5 sec)
+// Here, console.log("Bye") is Blocked because of setTimeout.
+
+
+// ## Synchronus code is handled normally like in call stack ur function calls will come and all the basic things like push, pop, etc normally like callstack.
+// ## To Handle Asynchronus code we need Event Loop in JS.
+
+// ## Event Loop - 3 components(Call Stack, Browser, Callback Queue)
+
+// 1) Call Stack - The Call Stack executes JavaScript code synchronously, one function at a time.
+
+// 2) Browser / Web APIs - The browser provides features that JavaScript itself doesn't directly handle, such as: setTimeout(), DOM events, fetch(), HTTP request, setInterval().
+
+// 3) Callback Queue - Once the timer finishes, the callback 'sayMyName' is placed into the Callback Queue but it doesn't immediately execute.
+// The Event Loop checks: "Is the Call Stack empty?"
+// If yes → it moves the callback from the Callback Queue → Call Stack.
+// Then sayMyName() executes.
+
+// IMP
+// Call Stack → Browser/Web APIs → Callback Queue → Event Loop → Call Stack
+// Diagram :
+//      JAVASCRIPT
+//          │
+//          │
+//          ▼
+//   ┌─────────────┐The Call Stack is where
+//   │  Call Stack │JavaScript executes your code.
+//   └──────┬──────┘JavaScript reads your code from top to bottom.
+//          │
+//          │ setTimeout()
+//          │
+//          ▼
+//   ┌─────────────┐JavaScript doesn't want to sit there waiting.
+//   │ Browser /   │So the timer is handed over to the Browser/Web API.
+//   │ Web APIs    │The browser starts a 5-second timer.
+//   └──────┬──────┘Meanwhile, JavaScript is free to continue.
+//          │
+//       5 seconds
+//          │
+//          │
+//          ▼
+//   ┌─────────────┐After the timer finishes, the browser takes "sayMyName"
+//   │  Callback   │and puts it into the Callback Queue.
+//   │    Queue    │The Callback Queue is basically a waiting line for callbacks.
+//   └──────┬──────┘So now, Callback Queue: sayMyName(), is waiting.
+//          │
+//     Event Loop
+//          │
+//          │
+//          ▼
+//   ┌─────────────┐The Call Stack is now empty because all the normal JavaScript code has finished.
+//   │  Call Stack │
+//   └─────────────┘
+//          │
+//          ▼
+//     sayMyName()
+
+// ## IMP - The Event Loop continuously asks: "Is the Call Stack empty?" If the answer is: No (it waits) amd If answer is: Yes(it takes the callback from the Callback Queue and puts it into the Call Stack.)
+// setTimeout() means "execute this function after exactly 5 seconds."
+// ##IMP
+// Call Stack = Executes
+// Web API = Handles waiting
+// Callback Queue/ Task Queue = Waits for execution
+// Event Loop = Moves callback when Stack is empty
+
